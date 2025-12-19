@@ -1,4 +1,5 @@
-import LogoImg from "../../../assets/logo.jpg";
+import LogoImg from "../../assets/logo.jpg";
+import Button from "../UI/Button.jsx";
 
 export default function Header() {
   return (
@@ -7,12 +8,9 @@ export default function Header() {
         <img src={LogoImg} alt="Logo-img" />
         <h1>Food Order</h1>
       </div>
-      <button
-        className="text-button"
-        //   onClick={open cart modal}
-      >
-        Cart (3)
-      </button>
+      <nav>
+        <Button textButton>Cart (0)</Button>
+      </nav>
     </header>
   );
 }
