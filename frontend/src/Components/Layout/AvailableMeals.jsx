@@ -17,7 +17,7 @@ export default function AvailableMeals() {
       )}
       {isLoading && !error && <p className="center">Meals Is Loading...</p>}
       {!isLoading &&
-        availableMeals.map((meal) => <MealItem key={meal.id} {...meal} />)}
+        availableMeals.map((meal) => <MealItem key={meal.id} meal={meal} />)}
     </ul>
   );
 }

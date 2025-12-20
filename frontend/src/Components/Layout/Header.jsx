@@ -1,7 +1,11 @@
 import LogoImg from "../../assets/logo.jpg";
 import Button from "../UI/Button.jsx";
+import CartContext from "../../Store/CartContext.jsx";
+import { useContext } from "react";
 
 export default function Header() {
+  const cartCtx = useContext(CartContext);
+  const cartLength = cartCtx.items.length;
   return (
     <header id="main-header">
       <div id="title">
@@ -9,7 +13,7 @@ export default function Header() {
         <h1>Food Order</h1>
       </div>
       <nav>
-        <Button textButton>Cart (0)</Button>
+        <Button textButton>Cart {cartLength}</Button>
       </nav>
     </header>
   );
