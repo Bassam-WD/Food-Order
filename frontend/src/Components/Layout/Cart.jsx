@@ -4,6 +4,7 @@ import CartContext from "../../Store/CartContext.jsx";
 import UserProgressContext from "../../Store/UserProgressContext.jsx";
 import { currencyFormatter } from "../../utils/formatting.js";
 import Button from "../UI/Button.jsx";
+import CartItem from "./CartItem.jsx";
 
 export default function Cart() {
   const cartCTX = useContext(CartContext);
@@ -18,23 +19,28 @@ export default function Cart() {
     userProgressCtx.hideCart();
   }
 
+  function handelOpenCheckout() {
+    userProgressCtx.showCheckout();
+  }
+
   return (
-    <Modal className="cart" open={isOpen}>
+    <Modal
+      className="cart"
+      open={isOpen}
+      onClose={isOpen ? handelCloseCart : null}
+    >
       <div>
         <h2>Your Cart</h2>
         <ul>
           {cartCTX.items.map((item) => (
-            <li key={item.id} className="cart-item">
-              <p>
-                {item.name} - {item.quantity} x{" "}
-                {currencyFormatter.format(item.price)}
-              </p>
-              <div className="cart-item-actions">
-                <button className="text-button">-</button>
-                <p className="center">{item.quantity}</p>
-                <button className="text-button ">+</button>
-              </div>
-            </li>
+            <CartItem
+              key={item.id}
+              name={item.name}
+              price={item.price}
+              quantity={item.quantity}
+              onIncrease={() => cartCTX.addItem(item)}
+              onDecrease={() => cartCTX.removeItem(item.id)}
+            />
           ))}
         </ul>
         <p className="cart-total">{currencyFormatter.format(totalPrice)}</p>
@@ -42,7 +48,9 @@ export default function Cart() {
           <Button textButton onClick={handelCloseCart}>
             close
           </Button>
-          <Button>Go to Checkout</Button>
+          {cartCTX.items.length > 0 && (
+            <Button onClick={handelOpenCheckout}>Go to Checkout</Button>
+          )}
         </div>
       </div>
     </Modal>
