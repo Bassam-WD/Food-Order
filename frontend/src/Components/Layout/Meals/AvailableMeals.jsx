@@ -1,5 +1,5 @@
 import MealItem from "./MealItem.jsx";
-import useFetch from "../../Hooks/useFetch.js";
+import useFetch from "../../../Hooks/useFetch.js";
 
 export default function AvailableMeals() {
   const {
