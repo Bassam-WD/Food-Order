@@ -2,6 +2,7 @@ import fs from 'node:fs/promises';
 
 import bodyParser from 'body-parser';
 import express from 'express';
+import { resolve } from 'node:path';
 
 const app = express();
 
@@ -23,6 +24,8 @@ app.get('/meals', async (req, res) => {
 app.post('/orders', async (req, res) => {
   const orderData = req.body.order;
 
+  await new Promise((resolve) => setTimeout(resolve, 1000))
+
   if (orderData === null || orderData.items === null || orderData.items.length === 0) {
     return res
       .status(400)
@@ -36,10 +39,13 @@ app.post('/orders', async (req, res) => {
     orderData.customer.name.trim() === '' ||
     orderData.customer.street === null ||
     orderData.customer.street.trim() === '' ||
-    orderData.customer['postal-code'] === null ||
-    orderData.customer['postal-code'].trim() === '' ||
+    orderData.customer.postalCode === null ||
+    orderData.customer.postalCode.trim() === '' ||
     orderData.customer.city === null ||
-    orderData.customer.city.trim() === ''
+    orderData.customer.city.trim() === '' ||
+    orderData.customer.phoneNumber.trim() === null ||
+    orderData.customer.phoneNumber.trim() === ''
+
   ) {
     return res.status(400).json({
       message:
