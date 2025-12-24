@@ -271,6 +271,13 @@ h1 {
   margin: 0;
 }
 
+.error-massage {
+  margin: 1px;
+  color: #cd0909;
+  font-size: small;
+  padding-left: 5px;
+}
+
 @keyframes fade-slide-up {
   from {
     opacity: 0;
