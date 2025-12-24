@@ -1,3 +1,4 @@
+
 export function validEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email)
@@ -24,27 +25,42 @@ export function ValidpostalNumber(postalNumber) {
 }
 
 
+const validators = {
+    text: {
+        fn: validName,
+        message: 'Name must contain only letters and at least 3 characters',
+    },
+    name: {
+        fn: validName,
+        message: 'Name must contain only letters and at least 3 characters',
+    },
+    email: {
+        fn: validEmail,
+        message: 'Please enter a valid email address.'
+    },
+    password: {
+        fn: validPassword,
+        message: 'Password must include letters and numbers,least 8 characters'
+    },
+
+    phone: {
+        fn: validPhoneNumber,
+        message: 'Please enter a valid phone number.'
+    },
+
+    postal: {
+        fn: ValidpostalNumber,
+        message: 'Please enter a valid phone number.'
+    }
+
+}
+
 export default function validation(type, value) {
-    if (type === 'name' || type === 'text') {
-        return !validName(value) && ' must contain only letters and least 3 characters'
+    if (!validators[type].fn(value)) {
+        return validators[type].message
+    } else {
+        return false
     }
-
-    if (type === 'email') {
-        return !validEmail(value) && 'Please enter a valid email address.'
-    }
-
-    if (type === 'password') {
-        return !validPassword(value) && 'Password must include letters and numbers,least 8 characters'
-    }
-
-    if (type === 'phone') {
-        return !validPhoneNumber(value) && 'Please enter a valid phone number.'
-    }
-
-    if (type === 'postal') {
-        return !ValidpostalNumber(value) && '"Postal code must be 5 digits"'
-    }
-
 
 
 }
