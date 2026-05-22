@@ -32,32 +32,6 @@ A responsive food ordering web application built with React.js that allows users
 - Conditional Rendering
 - Dynamic UI Updates
 
-## Installation
-
-Clone the repository:
-
-```bash
-git clone https://github.com/Bassam-WD/Food-Order.git
-```
-
-Navigate to the project folder:
-
-```bash
-cd Food-Order
-```
-
-Install dependencies:
-
-```bash
-npm install
-```
-
-Run the development server:
-
-```bash
-npm run dev
-```
-
 ## Future Improvements
 
 - Add authentication system
