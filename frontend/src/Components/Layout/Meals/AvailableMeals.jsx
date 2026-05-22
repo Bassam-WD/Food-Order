@@ -9,12 +9,12 @@ export default function AvailableMeals() {
     data: availableMeals,
     isLoading,
     error,
-  } = useFetch("http://localhost:3000/meals", reqConfig, []);
+  } = useFetch("https://food-order-production-bassam.up.railway.app/meals", reqConfig, []);
 
   return (
     <ul id="meals">
-      {error && <Error title="Failad to featch meals" message={error} />}
-      {isLoading && !error && <p className="center">Meals Is Loading...</p>}
+      {error && <Error title="Failed to fetch meals" message={error} />}
+      {isLoading && !error && <p className="center">Meals Are Loading...</p>}
       {!isLoading &&
         availableMeals.map((meal) => <MealItem key={meal.id} meal={meal} />)}
     </ul>
