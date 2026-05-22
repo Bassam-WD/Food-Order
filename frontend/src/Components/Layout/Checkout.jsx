@@ -27,7 +27,7 @@ export default function Checkout() {
   });
   console.log(inputErrors, "errors check out");
   const { data, error, sendRequest, clearData } = useFetch(
-    "http://localhost:3000/orders",
+    "https://food-order-production-bassam.up.railway.app/orders",
     reqConfig
   );
 
